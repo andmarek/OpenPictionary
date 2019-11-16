@@ -2,20 +2,45 @@ import React from 'react'
 import styled from 'styled-components';
 
 /* Components */
-//navbar
-import NavBar from '../components/navbar';
+
+/* Navbar */
+import NavBar from '../components/NavBar.js';
 
 /* Styles */
 const Styles = styled.div`
     background: #94cbca;
     display: flex;
-    width: 100%; 
+    width: 100%;
     justify-content: center;
 `;
+class Home extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
 
-export const Home = () => (
-    <Styles>
-            <NavBar />
-          <h2> What's poppin' </h2>
-    </Styles>
+        };
+    };
+    render () {
+        return (
+            <div>
+                <NavBar />
+                <Styles>
+                     <h2> What's poppin' </h2>
+                </Styles>       
+            </div>
+        );
+    }
+}
+/*
+const Home = () => (
+   render() { 
+       return (
+    <div>
+        <NavBar />
+    </div>    
+    
+
+}
 )
+*/
+export default Home;
