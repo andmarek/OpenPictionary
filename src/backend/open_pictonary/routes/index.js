@@ -1,12 +1,12 @@
-import notebook from '../controllers/notebookController';
+import user from '../controllers/userController.js';
 
 export default (app) => {
-    app.route('/notes')
-        .get(notebook.getAllNotes)
-        .post(notebook.createNote);
+    app.route('/users')
+        .get(user.getAllUsers)
+        .post(user.createNote);
 
-    app.route('/notes/:noteId')
-        .get(notebook.getNote)
-        .put(notebook.updateNote)
-        .delete(notebook.deleteNote);
+    app.route('/users/:userId')
+        .get(user.getUser)
+        .put(user.updateUser)
+        .delete(user.deleteUser);
 };
