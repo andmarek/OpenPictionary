@@ -63,11 +63,10 @@ class NavBar extends React.Component {
                     <img id="svg" alt="pbb" height="50px" width="50px" src={logo}/>
                   </div>
                   <ul id="nav">
-                      <li a href="/">Home</li>
+                      <li> <a> href="/">Home </a> </li>
                       <li a href= "/login">Login</li>
                       <li a href="/register">Register</li>
                   </ul> </div>
-
             </Styles>
     );
     }
