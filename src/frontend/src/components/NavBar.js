@@ -58,8 +58,8 @@ class NavBar extends React.Component {
     render() {
         return(
             <Styles>
-                <div class="navbar">
-                  <div class="image-container">
+                <div className="navbar">
+                  <div className="image-container">
                     <img id="svg" alt="pbb" height="50px" width="50px" src={logo}/>
                   </div>
                   <ul id="nav">
@@ -67,6 +67,12 @@ class NavBar extends React.Component {
                       <li a href= "/login">Login</li>
                       <li a href="/register">Register</li>
                   </ul> </div>
+                      <li> <a href="/">Home</a></li>
+                      <li> <a href= "/login">Login</a></li>
+                      <li> <a href="/register">Register</a></li>
+                  </ul>
+                </div>
+
             </Styles>
     );
     }
