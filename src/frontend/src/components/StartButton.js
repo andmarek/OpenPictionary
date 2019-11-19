@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 const Styles = styled.div`
     p {
-        margin: auto;
         color: white;
         font-family: 'Roboto', sans-serif;
         justify-content: center;
@@ -11,10 +10,12 @@ const Styles = styled.div`
     }
 
     #startbutton {
-       border-radius: 10px;
-       width: 100px;
-       height: 50px;
-       background-color: #D68266;
+        display: inline-block;
+        text-align: center;
+        border-radius: 10px;
+        width: 100px;
+        height: 50px;
+        background-color: #D68266;
     }
 `;
 class StartButton extends React.Component {
