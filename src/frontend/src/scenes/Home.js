@@ -1,10 +1,11 @@
 import React from 'react'
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 /* Components */
 
 /* Navbar */
-import NavBar from '../components/NavBar.js';
+import NavBar from '../components/NavBar.js'
+import StartButton from '../components/StartButton.js'
 
 /* Styles */
 const Styles = styled.div`
@@ -25,20 +26,20 @@ class Home extends React.Component {
             <div>
                 <NavBar />
                 <Styles>
-                     <h2> What's poppin' </h2>
-                </Styles>       
+                    <StartButton id="button"/>
+                </Styles>
             </div>
         );
     }
 }
 /*
 const Home = () => (
-   render() { 
+   render() {
        return (
     <div>
         <NavBar />
-    </div>    
-    
+    </div>
+
 
 }
 )

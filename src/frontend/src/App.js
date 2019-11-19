@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 /* Scenes */
-import { Home } from './scenes/Home.js';
+import Home from './scenes/Home.js';
 
 /* Components */
 
@@ -14,7 +14,6 @@ import './App.css';
 function App() {
   return (
     <React.Fragment>
-      <NavBar />
       <Router>
         <Switch>
          <Route exact path = "/" component={Home}/>
