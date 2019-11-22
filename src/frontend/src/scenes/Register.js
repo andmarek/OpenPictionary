@@ -1,12 +1,37 @@
 import React from 'react';
 import styled from 'styled-components';
+import NavBar from '../components/NavBar.js'
+
+
+const Styles1 = styled.div`
+    background: #94cbca;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+
+    #header {
+        border-radius: 10px;
+        width: 100px;
+        height: 50px;
+        background-color: #D68266;
+        justify-content: center;
+     }
+
+     p {
+        margin: auto;
+        color: white;
+        font-family: 'Roboto', sans-serif;
+        justify-content: center;
+        display: flex;
+    }
+`;
 
 const Styles = styled.div `
 
 .container{ padding: 16px; }
 
 input[type=text], input[type=password] {
-    width: 100%;
+    width: 98%;
     padding: 15px;
     margin: 5px 0 22px 0;
     display: inline-block;
@@ -88,13 +113,22 @@ class Register extends React.Component{
 
     render () {
         return ( 
+
+          <div>
+            <NavBar />
+
+            <Styles1>
+              <div id="header">
+                <p>Register</p>
+              </div>
+            </Styles1>
+
             <Styles>
+
+                
+
                 <div className = "container">
 
-                  <div className = "section">
-                    <h1>Register</h1>
-                    <p>Provide the following to create an account.</p>
-                  </div>
 
                   <div className = "section">
                     <label htmlFor="email"><b>Email</b></label>
@@ -113,7 +147,7 @@ class Register extends React.Component{
                   
                 </div>
             </Styles>
-
+            </div>
 
         );
     }
