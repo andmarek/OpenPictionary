@@ -94,13 +94,7 @@ class Login extends React.Component{
             </Styles1>
 
             <Styles>
-
-                
-
-
                 <div className = "container">
-
-
                     <div className = "section">
                         <label htmlFor="email"><b>Email</b></label><br></br>
                         <input type="text" placeholder="Enter Email" name="email" required></input>

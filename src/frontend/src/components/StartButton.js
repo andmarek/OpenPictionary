@@ -24,7 +24,24 @@ const Styles = styled.div`
         font-family: 'Roboto', sans-serif;
         font-size: 25px;
     }
+    a {
+        text-decoration: none;
+    }
+    a:link {
+        color: white;
+    }
+    a:visited {
+        color: white;
+        text-decoration: none;
+    }
+    a:active {
+        color: white;
+    }
+    a:hover {
+        color: #815D5D;
+    }
 `;
+
 class StartButton extends React.Component {
     constructor(props) {
         super(props);
@@ -36,7 +53,7 @@ class StartButton extends React.Component {
         return (
             <Styles>
                <div id="startbutton">
-                  <p id="sd">Start Drawing</p>
+                  <p id="sd"><a href="/game"> Start Drawing </a></p>
                </div>
             </Styles>
         );
