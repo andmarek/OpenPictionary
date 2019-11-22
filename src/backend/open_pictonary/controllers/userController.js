@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'; 
+import mongoose from 'mongoose';
 import user from '../models/userModel.js';
 
 exports.getUser = (req, res) => {
@@ -21,7 +21,7 @@ exports.getAllUsers = (req, res) => {
     });
 };
 
-exports.createUsesr = (req, res) => {
+exports.createUser = (req, res) => {
     const newUser = new user(req.body);
 
     newUser.save((err, user) => {

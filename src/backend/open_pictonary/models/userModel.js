@@ -3,21 +3,12 @@ import mongoose, {
 } from 'mongoose';
 
 /**
- * Create database scheme for users
+ * Create database scheme for notes
  */
-const UserScheme = new Schema({
-    title: {
-        type: String,
-        required: "What is the note's title?"
-    },
-    text: {
-        type: String,
-        required: "What is the note?"
-    },
-    date: {
-        type: Date,
-        default: new Date
-    }
+const UserSchema = new Schema({
+    email: String,
+    password: String,
+
 });
 
-export default mongoose.model('User', UserScheme);
+export default mongoose.model('User', UserSchema);
