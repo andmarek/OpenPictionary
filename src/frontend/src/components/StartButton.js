@@ -20,6 +20,10 @@ const Styles = styled.div`
        height: 100px;
        background-color: #D68266;
     }
+    #sd {
+        font-family: 'Roboto', sans-serif;
+        font-size: 25px;
+    }
 `;
 class StartButton extends React.Component {
     constructor(props) {
@@ -32,7 +36,7 @@ class StartButton extends React.Component {
         return (
             <Styles>
                <div id="startbutton">
-                  <p>Start Drawing</p>
+                  <p id="sd">Start Drawing</p>
                </div>
             </Styles>
         );
