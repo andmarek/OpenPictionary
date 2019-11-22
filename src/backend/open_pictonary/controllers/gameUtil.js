@@ -11,6 +11,17 @@ function generateTopic(room) {
     room.topic = list[index];
     return room;
 }
+function generateWord() {
+    const list = gameTopics.getWords();
+    return list[mathUtil.getRandomInt(0, list.length)];
+}
+/**
+ * Returns true if string s and t are equal
+ * Ignores case and whitespaces
+ */
+function cmp(s,t) {
+    return s.trim().toLowerCase() === t.trim().toLowerCase();
+}
 /**
  * Returns topic for the room
  */

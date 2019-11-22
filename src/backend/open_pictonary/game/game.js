@@ -1,21 +1,21 @@
 const http = require('http');
 const WebSocketServer = require('websocket').server;
 
-const server = http.createServer();
-server.listen(9898);
 
-const gameServer = new WebSocketServer({
-    httpServer: server
-});
+let nextVisitorNumber = 1;
 
-gameServer.on('request', function(request) {
-    const connection = request.accept(null, request.origin);
+exports.onConnect = (socket) => {
+    console.info(`Socket ${socket.id} has connected.`);
+    onlineClients.add(socket.id);
 
-    connection.on('message', function(message) {
-      console.log('Received Message:', message.utf8Data);
-      connection.sendUTF('Hi this is WebSocket server!');
+    socket.on("disconnect", () => {
+        onlineClients.delete(socket.id);
+        console.info(`Socket ${socket.id} has disconnected.`);
     });
-    connection.on('close', function(reasonCode, description) {
-        console.log('Client has disconnected.');
-    });
-});
+
+    // echoes on the terminal every "hello" message this socket sends
+    socket.on("hello", helloMsg => console.info(`Socket ${socket.id} says: "${helloMsg}"`));
+
+    // will send a message only to this socket (different than using `io.emit()`, which would broadcast it)
+    socket.emit("welcome", `Welcome! You are visitor number ${nextVisitorNumber++}`);
+}
