@@ -8,13 +8,13 @@ const app = express();
 let onlineClients = new Set()
 
 const port = process.env.PORT || '3000'; 
- app.listen(port);
- const server = http.createServer();
+app.listen(port);
+const server = http.createServer();
  //server.listen(9898);
 
- var io = socket(server);
+var io = socket(server);
 
- io.on("connection", () => game.onConnect());
+io.on("connection", () => game.onConnect());
 
 
 /**
