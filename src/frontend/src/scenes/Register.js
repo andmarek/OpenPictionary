@@ -24,6 +24,8 @@ const Styles1 = styled.div`
         justify-content: center;
         display: flex;
     }
+
+  
 `;
 
 const Styles = styled.div `
@@ -59,6 +61,10 @@ input[type=text], input[type=password] {
 
   .submitbtn:hover {
     opacity:1;
+  }
+
+  h1 {
+    text-align: center;
   }
   
 `;
@@ -117,17 +123,16 @@ class Register extends React.Component{
           <div>
             <NavBar />
 
-            <Styles1>
-              <div id="header">
-                <p>Register</p>
-              </div>
-            </Styles1>
 
             <Styles>
 
                 
 
                 <div className = "container">
+
+                  <div classNAme="section">
+                    <h1>Register</h1>
+                  </div>
 
 
                   <div className = "section">
