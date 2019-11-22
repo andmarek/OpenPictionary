@@ -1,14 +1,21 @@
 import mongoose from 'mongoose'; 
 import user from '../models/userModel.js';
-
+import gameTopics from '../util/gameTopics.js';
+import mathUtil from '../util/mathUtil.js';
+/**
+ * Picks a topic at random and assigns it to the room
+ */
+function generateTopic(room) {
+    const list = gameTopics.getTopics();
+    const index = mathUtil.getRandomInt(0, list.length);
+    room.topic = list[index];
+    return room;
+}
+/**
+ * Returns topic for the room
+ */
 exports.getTopic = (req, res) => {
-    user.findById(req.params.userId, (err, user) => {
-        if (err) {
-            res.send(err);
-        }
-
-        res.json(user);
-    });
+   
 };
 
 exports.getAllUsers = (req, res) => {
@@ -21,7 +28,7 @@ exports.getAllUsers = (req, res) => {
     });
 };
 
-exports.createUsesr = (req, res) => {
+exports.createRoom = (req, res) => {
     const newUser = new user(req.body);
 
     newUser.save((err, user) => {
@@ -33,7 +40,7 @@ exports.createUsesr = (req, res) => {
     });
 };
 
-exports.updateUser = (req, res) => {
+exports.joinRoom = (req, res) => {
     user.findOneAndUpdate({
         _id: req.params.userId
     }, req.body,
