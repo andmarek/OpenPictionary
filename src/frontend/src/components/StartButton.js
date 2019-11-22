@@ -8,12 +8,16 @@ const Styles = styled.div`
         font-family: 'Roboto', sans-serif;
         justify-content: center;
         display: flex;
+        vertical-align: middle;
+        top: 50%;
+        transform: translateY(-50%);
+        position: relative;
     }
 
     #startbutton {
        border-radius: 10px;
-       width: 100px;
-       height: 50px;
+       width: 200px;
+       height: 100px;
        background-color: #D68266;
     }
 `;

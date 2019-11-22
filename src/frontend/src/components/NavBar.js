@@ -35,7 +35,8 @@ const Styles = styled.div `
         text-decoration: none;
     }
     #nav li a {
-
+        text-decoration: none;
+        
     }
 
     p {
