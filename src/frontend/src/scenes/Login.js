@@ -40,6 +40,19 @@ input[type=text], input[type=password] {
 
 class Login extends React.Component{
 
+
+    getData(){
+
+      return;
+    }
+
+    checkValid() {
+
+      return;
+    }
+
+
+
     render () {
         return (
             <Styles>
@@ -57,7 +70,7 @@ class Login extends React.Component{
                         <input id="password" className="password" type="password" placeholder="Enter Password" required></input>
                     </div>
 
-                    <button id="submitbtn" onClick={() =>{this.checkValid()}} className="submitbtn">Submit</button>
+                    <button id="submitbtn" onClick={() =>{ this.checkValid() }} className="submitbtn">Submit</button>
 
                 </div>
             </Styles>
