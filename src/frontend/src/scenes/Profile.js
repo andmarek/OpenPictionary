@@ -44,6 +44,10 @@ p {
     background-color: #ddd;
     outline: none;
   }
+
+  h1{
+      text-align: center;
+  }
   
 `;
 
@@ -82,17 +86,16 @@ class Profile extends React.Component{
             <div>
 
                 <NavBar />
-                <Styles1>
-                    <div id="header">
-                        <p>Profile</p>
-                    </div>
-                </Styles1>
+                
                     
 
 
                 <Styles>
                     <div className = "container">
 
+                    <div classNamem="section">
+                        <h1>Profile</h1>
+                    </div>
 
                     <div className = "section">
                         <label htmlFor="email"><b>Email</b></label>

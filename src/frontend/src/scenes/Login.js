@@ -62,6 +62,10 @@ input[type=text], input[type=password] {
   .submitbtn:hover {
     opacity:1;
   }
+
+  h1{
+    text-align: center;
+  }
   
 `;
 
@@ -87,14 +91,20 @@ class Login extends React.Component{
 
             <NavBar />
 
-            <Styles1>
-              <div id="header">
-                <p>Login</p>
-              </div>
-            </Styles1>
 
             <Styles>
+<<<<<<< HEAD
                 <div className = "container">
+=======
+
+
+                <div className = "container">
+                  <div className="section">
+                    <h1>Login</h1>
+                  </div>
+
+
+>>>>>>> 2dc1f9d6bbdc9df6ec886f590ac4d9ea8230ef51
                     <div className = "section">
                         <label htmlFor="email"><b>Email</b></label><br></br>
                         <input type="text" placeholder="Enter Email" name="email" required></input>
