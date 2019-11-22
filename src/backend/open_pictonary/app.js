@@ -2,13 +2,31 @@ import express from 'express'
 import mongoose from 'mongoose'
 import bodyParser from 'body-parser'
 import routes from './routes/index.js'
-
+import socket from 'socket.io'
+import game from '../open_pictonary/game/game.js'
 const app = express();
+let onlineClients = new Set()
+
+const port = process.env.PORT || '3000'; 
+app.listen(port);
+const server = http.createServer();
+ //server.listen(9898);
+
+var io = socket(server);
+
+io.on("connection", () => game.onConnect());
+
 
 /**
 * Connect to the database
 */
-mongoose.connect('mongodb://localhost');
+mongoose.connect('mongodb://localhost', function(err, db) {
+    if (err) {
+        console.log('Unable to connect to the server. Please start the server. Error:', err);
+    } else {
+        console.log('Connected to Server successfully!');
+    }
+});
 
 /**
 * Middleware
