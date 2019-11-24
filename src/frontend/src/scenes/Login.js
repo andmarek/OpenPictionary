@@ -63,8 +63,10 @@ input[type=text], input[type=password] {
     opacity:1;
   }
 
-  h1{
+  #loginTitle{
+    font-family: 50px 'Roboto', sans-serif;
     text-align: center;
+
   }
   
 `;
@@ -81,6 +83,7 @@ class Login extends React.Component{
 
       return;
     }
+    
 
 
 
@@ -97,7 +100,7 @@ class Login extends React.Component{
 
                 <div className = "container">
                   <div className="section">
-                    <h1>Login</h1>
+                    <h1 id='loginTitle'>Login</h1>
                   </div>
 
 
