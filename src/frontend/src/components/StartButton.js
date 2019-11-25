@@ -53,7 +53,7 @@ class StartButton extends React.Component {
         return (
             <Styles>
                <div id="startbutton">
-                  <p id="sd"><a href="/game"> Start Drawing </a></p>
+                  <p id="sd"><a href="/draw"> Start Drawing </a></p>
                </div>
             </Styles>
         );

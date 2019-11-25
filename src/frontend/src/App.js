@@ -1,6 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
+
+
+
 /* Scenes */
 import Home from './scenes/Home.js';
 
@@ -19,7 +22,7 @@ function App() {
          <Route exact path = "/" component={Home}/>
        </Switch>
       </Router>
-    </React.Fragment> 
+    </React.Fragment>
   );
 }
 

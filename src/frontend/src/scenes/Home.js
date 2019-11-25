@@ -61,7 +61,7 @@ class Home extends React.Component {
                 <NavBar />
                 <div>
                 <ImageStyles>
-                     
+
                 </ImageStyles>
                 <TextStyle>
                      <p id="openPictionaryText"> OpenPictionary <img id="svg" alt="pbb" height="50px" width="50px"alight='right' src={pb}/></p>

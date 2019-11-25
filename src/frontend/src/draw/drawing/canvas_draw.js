@@ -1,5 +1,42 @@
 
 // When true, moving the mouse draws on the canvas
+
+
+const red = document.getElementById("red");
+
+const default_brush_size = 2;
+
+var currentColor = "rgb(255, 255, 255)";
+
+var brushSize = document.getElementById("");
+
+red.addEventListener("click", function() {
+   currentColor = "rgb(255, 0, 0)";
+});
+
+blue.addEventListener("click", function() {
+   currentColor = "rgb(0, 0, 255)";
+});
+
+green.addEventListener("click", function() {
+   currentColor = "rgb(0, 255, 0)";
+});
+
+yellow.addEventListener("click", function() {
+   currentColor = "rgb(255, 255, 0)";
+});
+
+maroon.addEventListener("click", function() {
+   currentColor = "rgb(128, 0, 0)";
+});
+
+
+function random(number) {
+  return Math.floor(Math.random()*(number+1));
+}
+const btn = document.getElementById("myButton");
+
+
 let isDrawing = false;
 let x = 0;
 let y = 0;
@@ -36,8 +73,9 @@ window.addEventListener('mouseup', e => {
 
 function drawLine(context, x1, y1, x2, y2) {
   context.beginPath();
-  context.strokeStyle = 'black';
-  context.lineWidth = 1;
+  //context.strokeStyle = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+  context.strokeStyle = currentColor;
+  context.lineWidth = 4;
   context.moveTo(x1, y1);
   context.lineTo(x2, y2);
   context.stroke();
