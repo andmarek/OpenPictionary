@@ -40,23 +40,28 @@ class ColorPalette extends React.Component {
         }
         handleMouseDown = (e) => {
             this.state.drawing = true;
+            this.x = e.clientX - this.rect.left;
+            this.y = e.clientY - this.rect.top;
+
             console.log('draw');
         }
 
         handleMouseUp = (e) => {
+            if (this.state.drawing === true) {
+
             this.state.drawing = false;
+            this.drawLine(this.ctx, this.x, this.y, e.clientX - this.rect.left, e.clientY - this.rect.top);
             console.log('mouse up');
+            }
         }
 
         handleMouseMove = (e) => {
             if (this.state.drawing === true) {
                 console.log('mouse moving');
-                let x = e.clientX;
-                let y = e.clientY;
-                console.log(this.ctx, x, y, e.clientX - this.rect.left, e.clientY - this.rect.top);
-                this.drawLine(this.ctx, x, y, e.clientX - this.rect.left, e.clientY - this.rect.top);
-                x = 0;
-                y = 0;
+                this.drawLine(this.ctx, this.x, this.y, e.clientX - this.rect.left, e.clientY - this.rect.top);
+                this.x = e.clientX - this.rect.left;
+                this.y = e.clientY - this.rect.top;
+            
             }
         }
     render() {
