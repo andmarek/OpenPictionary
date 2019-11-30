@@ -11,7 +11,7 @@ import Login from './scenes/Login';
 import Profile from './scenes/Profile';
 import GameScene from './scenes/GameScene';
 
-import ColorPalette from './components/ColorPalette.js'
+import Canvas from './components/Canvas.js';
 
 const routing = (
     <Router>
