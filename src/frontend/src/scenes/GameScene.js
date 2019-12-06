@@ -1,33 +1,44 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components';
 //import PropTypes from 'prop-types';
 import Canvas from '../components/Canvas.js'
 import NavBar from '../components/NavBar.js';
-import { SketchPicker } from 'react-color'
+import Easel from '../components/Easel.js';
+import { SketchPicker } from 'react-color';
+const ContentStyle = styled.div`
+    .wrapper {
 
+    }
+    #easel {
+        float: left;
+        z-index: 100;
+    }
+    #canvas {
+        z-index: 1;
+    }
+`;
 class GameScene extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            penColor : 'purple',
+            canvasDrawer : 'purple',
         };
     };
     
-    handleChangeComplete = (color, event) => {
+    handleColor = (color, event) => {
         this.setState({ penColor : color.hex})
         console.log("changed color");
     }
 
     render() {
         return (
-        <div>
+        <ContentStyle>
+        <div className="wrapper">
             <NavBar />
-            <SketchPicker
-                onChangeComplete = {this.handleChangeComplete}
-                color= {this.state.penColor}
-                />
-            <Canvas color={this.state.penColor} />
+            <Easel id="easel" handleColorChange={this.handleColor} />
+            <Canvas id="canvas" color={this.state.penColor} />
         </div>
+        </ContentStyle>
         );
     }
 }
