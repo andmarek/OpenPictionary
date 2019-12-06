@@ -10,11 +10,11 @@ const ContentStyle = styled.div`
 
     }
     #easel {
+        position: absolute;
         float: left;
         z-index: 100;
     }
     #canvas {
-        z-index: 1;
     }
 `;
 class GameScene extends React.Component {

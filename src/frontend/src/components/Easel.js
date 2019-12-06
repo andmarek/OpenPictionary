@@ -5,10 +5,12 @@ import styled from 'styled-components';
 const SideBar = styled.div`
     .wrapper {
         height: 100%;
+        position: absolute;
     }
     .test {
         z-index: 100;
     }
+
     #sidebar {
         background: #BC909D;
         height: 100%;
@@ -19,7 +21,12 @@ const SideBar = styled.div`
         position: fixed;
     }
 `;
-
+const Things = styled.div`
+    .sketchPicker {
+        position: absolute;
+        margin-left: 50px;
+    }
+`;
 class Easel extends React.Component {
     constructor(props) {
         super(props);
@@ -48,8 +55,12 @@ class Easel extends React.Component {
 
     render () {
         return (
-            <div>
-                {this.state.showComponent && <SketchPicker hide={this.state.showComponent} onChangeComplete={this.handleChangeComplete} color={this.state.penColor} />}
+            <div class="wrapper">
+                <Things> 
+                    <div className="sketchPicker">
+                        {this.state.showComponent && <SketchPicker style={{zIndex: 100 }}id="sketchPicker" hide={this.state.showComponent} onChangeComplete={this.handleChangeComplete} color={this.state.penColor} />}
+                    </div>
+                </Things>
                 <SideBar>
                 <div className="wrapper">
                     <div id="sidebar">
