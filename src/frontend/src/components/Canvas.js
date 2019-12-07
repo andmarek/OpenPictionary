@@ -1,15 +1,12 @@
 import React from 'react';
 import styled from 'styled-components'
 
-
-/*function drawLine(context, x1, y1, x2, y2) {
-
-}*/
-
 const CanvasStyle = styled.div`
    #myCanvas {
+        background-color: white;
         border-style: solid;
-        border-width: 1px;
+        border-width: 2px;
+        border-color: #BC909D;
    }
 `;
 class Canvas extends React.Component {
@@ -36,7 +33,7 @@ class Canvas extends React.Component {
            context.lineTo(x2, y2);
            context.stroke();
            context.closePath();
- 
+
         }
         handleMouseDown = (e) => {
             this.state.drawing = true;
@@ -48,7 +45,6 @@ class Canvas extends React.Component {
 
         handleMouseUp = (e) => {
             if (this.state.drawing === true) {
-
             this.state.drawing = false;
             this.drawLine(this.ctx, this.x, this.y, e.clientX - this.rect.left, e.clientY - this.rect.top);
             console.log('mouse up');
@@ -61,26 +57,18 @@ class Canvas extends React.Component {
                 this.drawLine(this.ctx, this.x, this.y, e.clientX - this.rect.left, e.clientY - this.rect.top);
                 this.x = e.clientX - this.rect.left;
                 this.y = e.clientY - this.rect.top;
-            
+
             }
         }
     render() {
     return(
-        <div id="color_palette">
-            <div className="wrapper">
+            <div>
              <CanvasStyle>
-                <canvas ref='canvas' id='myCanvas' width='500' height='500' 
+                <canvas ref='canvas' id='myCanvas' width='1000px' height='500px'
                 onMouseDown={(e) => this.handleMouseDown(e)} onMouseMove={(e) => this.handleMouseMove(e)}
                 onMouseUp={(e) => this.handleMouseUp(e)}/>
              </CanvasStyle>
             </div>
-
-            <div id="red"></div>
-            <div id="blue"></div>
-            <div id="yellow"></div>
-            <div id="green"></div>
-            <div id="maroon"></div>
-        </div>
     );
     }
 }
