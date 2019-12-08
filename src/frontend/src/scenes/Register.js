@@ -50,16 +50,26 @@ class Register extends React.Component{
       super(props);
       this.state = { username : "", email : "", password : "", errors: []};
     }
-    
+
     submitHandler = e => {
+      const { email, password, username } = this.state;
       e.preventDefault();
       console.log(this.state);
-      axios.post('http://localhost:8080/user', this.state)
-      .then(response => {
-        console.log(response);
-      }).catch(error => {
-        console.log(error);
-      });
+
+      axios.post('http://localhost:8080/user', {
+              username: username,
+              email: email,
+              password: password
+          },/* We need to include this I think to store cookies
+               { withCredentials: true}
+               However, it causes some problem with CORS authentification.
+                But it is a necessity, especially for "login.js"          */
+        )
+        .then(response => {
+          console.log(response);
+        }).catch(error => {
+          console.log(error);
+        });
     }
     submitRegister(e) {
       if(this.state.username === "") {
@@ -69,7 +79,7 @@ class Register extends React.Component{
       } if (this.state.password === "") {
         this.showValidationErr("password", "Password not valid.");
       }
-    } 
+    }
     onUsernameChange(e) {
       this.setState({username: e.target.value}) ;
     }
@@ -99,20 +109,20 @@ class Register extends React.Component{
       let usernameErr = null, passwordErr = null, emailErr = null;
 
       const { username, email, password} = this.state;
-     /* 
+     /*
       for (let err of this.state.errors) {
         if(err.elm == "username") {
           usernameErr = err.msg;
-        } 
+        }
         if (err.elm == "password") {
           passwordErr = err.msg;
-        } 
+        }
         if (err.elm == "email") {
           emailErr = err.msg;
         }
       }*/
 
-        return ( 
+        return (
           <div>
             <NavBar />
             <Styles>
