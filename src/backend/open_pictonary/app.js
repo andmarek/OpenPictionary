@@ -9,14 +9,10 @@ let onlineClients = new Set()
 
 const port = process.env.PORT || '3000'; 
 app.listen(port);
-const server = http.createServer();
- //server.listen(9898);
-
+const server = http.createServer(app);
 var io = socket(server);
-
 io.on("connection", () => game.onConnect());
-
-
+server.listen(9898, () => console.info('Listening on port 9898'));
 /**
 * Connect to the database
 */
