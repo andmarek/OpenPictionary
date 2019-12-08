@@ -3,7 +3,6 @@ import React from 'react';
 import styled from 'styled-components';
 import NavBar from '../components/NavBar.js'
 
-
 const Styles1 = styled.div`
     background: #94cbca;
     display: flex;
@@ -30,7 +29,6 @@ const Styles1 = styled.div`
 const Styles = styled.div `
 
 .container{ padding: 16px; }
-
 p {
     width: 98%;
     padding: 15px;
@@ -39,38 +37,30 @@ p {
     border: none;
     background: #f1f1f1;
   }
-  
   p {
     background-color: #ddd;
     outline: none;
   }
-
   h1{
       text-align: center;
   }
-  
 `;
 
 class Profile extends React.Component{
 
-
-    constructor (){
-        super();
+    constructor (props){
+        super(props);
         this.passwordToDisplay = "";
         this.emailToDisplay = "";
         this.usernameToDisplay = "";
     }
-
+    
     getData() {
-
         var request = new XMLHttpRequest();
-
         request.addEventListener('load', () => {
             alert(request.responseText);
         })
-
-        //request.open('GET', URL);
-
+        request.open('GET', URL);
         //this.passwordToDisplay = 
         //this.emailToDisplay = 
         //this.usernameToDisplay = 
@@ -79,42 +69,27 @@ class Profile extends React.Component{
     }
 
     render () {
-
-        
-
         return (
             <div>
-
                 <NavBar />
-                
-                    
-
-
                 <Styles>
                     <div className = "container">
-
                     <div classNamem="section">
                         <h1>Profile</h1>
                     </div>
-
                     <div className = "section">
                         <label htmlFor="email"><b>Email</b></label>
                         <p>{ this.emailToDisplay }</p>
-
                         <label htmlFor="username"><b>Username</b></label>
                         <p>{ this.usernameToDisplay }</p>
-
                         <label htmlFor="password"><b>Password</b></label>
                         <p>{ this.passwordToDisplay }</p>
-
                     </div>
-                    
                     </div>
                 </Styles>
             </div>
         );
-
     }
 }
 
-export default Profile
+export default Profile;

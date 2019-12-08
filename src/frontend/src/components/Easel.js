@@ -4,15 +4,18 @@ import palette from '../assets/palette.svg';
 import styled from 'styled-components';
 
 const SideBar = styled.div`
-.return {
-    height 100%;
-}
+    .return {
+        height: 100%;
+    }
+
+    p {
+        font-family: 'Roboto', sans-serif;
+        color: white;
+    }
     #sidebar {
         background: #BC909D;
-        width: 50px;
         overflow-x: hidden;
-        height: 100%;
-        z-index: 0;
+        height: 500px;
     }
     .sketchPicker {
         position: absolute;
@@ -52,9 +55,10 @@ class Easel extends React.Component {
             <div className="return">
                 <SideBar>
                     <div className="sketchPicker">
-                        {this.state.showComponent && <SketchPicker style={{zIndex: 100 }}id="sketchPicker" hide={this.state.showComponent} onChangeComplete={this.handleChangeComplete} color={this.state.penColor} />}
+                        {this.state.showComponent && <SketchPicker id="sketchPicker" style={{zIndex: 100 }}id="sketchPicker" hide={this.state.showComponent} onChangeComplete={this.handleChangeComplete} color={this.state.penColor} />}
                     </div>
                     <div id="sidebar">
+                        <p>Palette</p>
                         <img id="svg" alt="palette" height="50px" width="50px" src={palette}
                          onClick={() => this.showOrHide()} />
                     </div>

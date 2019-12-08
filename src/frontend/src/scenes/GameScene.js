@@ -34,26 +34,14 @@ const ContentStyle = styled.div`
         /* else */
         height: 100%;
     }
-    .bottomScreen {
-        order: 3;
-        justify-content: flex-start;
-    }
-    .wordPickerWrapper {
-        order: 2;
-        height: 100%;
-        background-color: white;
-        border-style: solid;
-        border-width: 2px;
-        border-color: black;
-        background-color: #94cbca;
-    }
-
-    /* Bottom screen elements */
+    /* Main screen elements */
     #easel {
         order: 1;
         top: 0;
+        height: 100%;
         position: fixed;
         z-index: 100;
+        flex-grow: 1;
     }
     #canvas {
         order: 2;
@@ -62,6 +50,14 @@ const ContentStyle = styled.div`
         flex-grow: 1;
         order: 3;
     }
+
+    /* Bottom screen elements */
+    .bottomScreen {
+        order: 3;
+        justify-content: flex-start;
+    }
+    
+    
 `;
 class GameScene extends React.Component {
     constructor(props) {

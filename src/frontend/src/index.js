@@ -10,7 +10,6 @@ import Register from './scenes/Register';
 import Login from './scenes/Login';
 import Profile from './scenes/Profile';
 import GameScene from './scenes/GameScene';
-
 import Canvas from './components/Canvas.js';
 
 const routing = (

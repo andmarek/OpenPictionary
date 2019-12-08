@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 import NavBar from '../components/NavBar';
+import axios from 'axios';
 
 
 const Styles1 = styled.div`
@@ -72,53 +73,62 @@ input[type=text], input[type=password] {
 `;
 
 class Login extends React.Component{
+  constructor(props) {
+    super(props);
+    this.state = {username : "", password : "", loginErrors: ""}
+  }
 
+  submitLogin = (e) => {
+    const {
+      username,
+      password
+    } = this.state;
 
-    getData(){
+    e.preventDefault();
+    console.log(this.state);
+    axios.post('http://localhost:8080/', {
+        user: {
+          username: username,
+          password: password
+        },
+      }, {
+        withCredentials: true
+      }).then(response => {
+        if (response.data.logged_in) {
+          this.props.handleSuccessfulAuth(response.data);
+        }
+      })
+      .catch(error => {
+        console.log("login error: ", error)
+      });
+  }
 
-      return;
-    }
-
-    checkValid() {
-
-      return;
-    }
-    
-
-
-
+  handleChange(e)   {
+    this.setState({
+        [e.target.name]: e.target.value
+      });
+  }
     render () {
         return (
-
-<div>
-
+          <div>
             <NavBar />
-
-
             <Styles>
-
-
                 <div className = "container">
+                  <form onSubmit={this.submitLogin.bind(this)}>
                   <div className="section">
                     <h1 id='loginTitle'>Login</h1>
                   </div>
-
-
                     <div className = "section">
                         <label htmlFor="email"><b>Email</b></label><br></br>
                         <input type="text" placeholder="Enter Email" name="email" required></input>
-
                         <br></br>
-
                         <label htmlFor="password"><b>Password</b></label><br></br>
                         <input id="password" className="password" type="password" placeholder="Enter Password" required></input>
                     </div>
-
-                    <button id="submitbtn" onClick={() =>{ this.checkValid() }} className="submitbtn">Submit</button>
-
+                    <button id="submitbtn" onClick={this.submitLogin.bind(this)} className="submitbtn">Submit</button>
+                  </form>
                 </div>
             </Styles>
-
             </div>
         );
     }
