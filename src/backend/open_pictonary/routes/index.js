@@ -9,4 +9,5 @@ export default (app) => {
         .get(user.getUser)
         .put(user.updateUser)
         .delete(user.deleteUser);
+    
 };

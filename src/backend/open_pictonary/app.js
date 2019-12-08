@@ -20,7 +20,7 @@ io.on("connection", () => game.onConnect());
 /**
 * Connect to the database
 */
-mongoose.connect('mongodb://localhost', function(err, db) {
+/*mongoose.connect('mongodb://localhost', function(err, db) {
     if (err) {
         console.log('Unable to connect to the server. Please start the server. Error:', err);
     } else {
