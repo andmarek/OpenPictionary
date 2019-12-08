@@ -5,13 +5,13 @@ import mathUtil from '../util/mathUtil.js';
 /**
  * Picks a topic at random and assigns it to the room
  */
-function generateTopic(room) {
+exports.generateTopic = (room) => {
     const list = gameTopics.getTopics();
     const index = mathUtil.getRandomInt(0, list.length);
     room.topic = list[index];
     return room;
 }
-function generateWord() {
+exports.generateWord = () => {
     const list = gameTopics.getWords();
     return list[mathUtil.getRandomInt(0, list.length)];
 }
@@ -19,7 +19,7 @@ function generateWord() {
  * Returns true if string s and t are equal
  * Ignores case and whitespaces
  */
-function cmp(s,t) {
+exports.cmp = (s,t) => {
     return s.trim().toLowerCase() === t.trim().toLowerCase();
 }
 /**

@@ -1,5 +1,7 @@
 const http = require('http');
 const WebSocketServer = require('websocket').server;
+import gameUtil from '../open_pictonary/controllers/gameUtil.js'
+
 var roomToUsers = new Map();
 var roomToGame = new Map();
 
@@ -18,7 +20,7 @@ exports.onConnect = (socket) => {
         var gameForRoom = roomToGame.get(roomName);
         if(gameForRoom == null) {
             // TODO intialize game
-            gameForRoom = {};
+            gameForRoom = gameUtil.generateTopic(gameForRoom);
             roomToGame.set(roomName, gameForRoom);       
         }
         socket.broadcast.to(roomName).emit(`${socket.id} has joined the game`);
@@ -43,19 +45,22 @@ exports.onConnect = (socket) => {
     });
 
     // Guess
-    socket.on("guess", (guess) => {
+    socket.on("guess", (guess, roomName) => {
         console.info(`Socket ${socket.id} has guessed ${guess}.`);
         var msg = "incorrect";
-        if (guess === 'TRUE') {
+        var game = roomToGame.get(roomName);
+        if (gameUtil.cmp(guess, game.topic)) {
             msg = "correct";
             socket.broadcast.to(roomName).emit(`${socket.id} has correctly guess this round`);
+            gameUtil.generateTopic(game);
+            roomToGame.set(roomName, game);
         } 
         socket.emit(msg);
     });
 
     // Message
-    socket.on("message", (message) => {
-        socket.boardcast.emit(message);
+    socket.on("message", (message, roomName) => {
+        socket.broadcast.to(roomName).emit(message);
     });
 
     // echoes on the terminal every "hello" message this socket sends
