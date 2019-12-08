@@ -1,12 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-//import InlineSVG from 'svg-inline-react';
 import logo from '../assets/paint-board-and-brush.svg';
-// Use with loader ?
-//<InlineSVG src={require("svg-inline-loader")} />
-//const Icon = ({ fill }) => <InlineSVG src="src/assets/paint-board-and-brush.svg" />
 
-//remember to add styled components somewhere
 const Styles = styled.div `
     .image-container {
         display: block;
@@ -35,7 +30,21 @@ const Styles = styled.div `
         text-decoration: none;
     }
     #nav li a {
+        text-decoration: none;
 
+    }
+    a:link {
+        color: white;
+    }
+    a:visited {
+        color: white;
+        text-decoration: none;
+    }
+    a:active {
+        color: white;
+    }
+    a:hover {
+        color: #815D5D;
     }
 
     p {
@@ -52,7 +61,7 @@ class NavBar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            page: 'Home'
         };
     };
     render() {
@@ -66,7 +75,8 @@ class NavBar extends React.Component {
                       <li> <a href="/">Home</a></li>
                       <li> <a href= "/login">Login</a></li>
                       <li> <a href="/register">Register</a></li>
-                  </ul> 
+                      <li> <a href="/profile">Profile</a></li>
+                  </ul>
                 </div>
 
             </Styles>
@@ -76,20 +86,3 @@ class NavBar extends React.Component {
 }
 
 export default NavBar;
-/*
-const NavBar = () => (
-            <Styles>
-                <div class="navbar">
-                  <div class="image-container">
-                    <img src={logo} width="50px" height="50px" alt="paint brush and board"/>
-                  </div>
-                  <ul id="nav">
-                      <li a href=" ">Home</li>
-                      <li a href= "">Login</li>
-                      <li a href=" ">Register</li>
-                  </ul> </div>
-            </Styles>
-)
-
-export default NavBar;
-*/

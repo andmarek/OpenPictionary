@@ -8,6 +8,10 @@ import App from './App';
 import Home from './scenes/Home';
 import Register from './scenes/Register';
 import Login from './scenes/Login';
+import Profile from './scenes/Profile';
+import GameScene from './scenes/GameScene';
+
+import Canvas from './components/Canvas.js';
 
 const routing = (
     <Router>
@@ -15,6 +19,8 @@ const routing = (
             <Route exact path="/" component={Home} />
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} />
+            <Route path="/profile" component={Profile} />
+            <Route path="/draw" component={GameScene} />
         </div>
     </Router>
 )

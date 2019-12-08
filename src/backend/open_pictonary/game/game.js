@@ -2,12 +2,13 @@ const http = require('http');
 const WebSocketServer = require('websocket').server;
 
 
-let nextVisitorNumber = 1;
+let nextVisitorNumber;
 
 exports.onConnect = (socket) => {
     console.info(`Socket ${socket.id} has connected.`);
     onlineClients.add(socket.id);
-
+    
+    // Disconnect
     socket.on("disconnect", () => {
         onlineClients.delete(socket.id);
         console.info(`Socket ${socket.id} has disconnected.`);
