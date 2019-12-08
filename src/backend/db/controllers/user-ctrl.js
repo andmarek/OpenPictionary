@@ -1,5 +1,6 @@
 const User = require('../models/user-model')
 
+
 exports.createUser = (req, res) => {
     const body = req.body
 
@@ -11,7 +12,10 @@ exports.createUser = (req, res) => {
             })
     }
 
-    const user = new User(body)
+    let user = new User({
+        username: req.body.username,
+        password: req.body.password
+    })
 
     if (!user) {
         return res.status(400).json({success: false, error: err})
@@ -31,8 +35,6 @@ exports.createUser = (req, res) => {
             message: 'User not created',
         })
     })
-
-
 }
 
 exports.findAll = (req, res) => {
@@ -46,3 +48,23 @@ exports.findAll = (req, res) => {
         });
 }
 
+exports.findOne = (req, res) => {
+    User.findById(req.params.userId).then(
+        user => {
+            if (!user) {
+                return res.status(404).send({
+                    message: "User not found with id " + req.params.userId
+                });
+            }
+            res.send(user);
+            console.log(user);
+        }).catch(err => {
+            if (err.kind === 'ObjectId') {
+                return res.status(404).send({
+                    
+                        message: "User not found with id " + req.params.userId
+                });
+            }
+            return res.status(500).send({ message: "Error retrieving user with id" + req.params.userId});
+        });
+}
