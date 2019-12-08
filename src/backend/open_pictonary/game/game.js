@@ -8,6 +8,16 @@ exports.onConnect = (socket) => {
     console.info(`Socket ${socket.id} has connected.`);
     onlineClients.add(socket.id);
     
+    // Add client to a game
+    socket.on('addToRoom', function(roomName) {
+        socket.join(roomName);
+    });
+    
+    // Remove client from a game
+    socket.on('removeFromRoom', function(roomName) {
+        socket.leave(roomName);
+    });
+
     // Disconnect
     socket.on("disconnect", () => {
         onlineClients.delete(socket.id);
