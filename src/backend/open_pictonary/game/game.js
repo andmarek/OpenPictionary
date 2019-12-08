@@ -1,6 +1,7 @@
 const http = require('http');
 const WebSocketServer = require('websocket').server;
-
+var roomToUsers = new Map();
+var roomToGame = new Map();
 
 let nextVisitorNumber;
 
@@ -11,11 +12,28 @@ exports.onConnect = (socket) => {
     // Add client to a game
     socket.on('addToRoom', function(roomName) {
         socket.join(roomName);
+        var list = roomToUsers.get(roomName) || [];
+        list.append(socket.id);
+        roomToUsers.set(roomName, list); 
+        var gameForRoom = roomToGame.get(roomName);
+        if(gameForRoom == null) {
+            // TODO intialize game
+            gameForRoom = {};
+            roomToGame.set(roomName, gameForRoom);       
+        }
+        socket.broadcast.to(roomName).emit(`${socket.id} has joined the game`);
     });
     
     // Remove client from a game
     socket.on('removeFromRoom', function(roomName) {
         socket.leave(roomName);
+        var list = roomToUsers.get(roomName) || [];
+        list.remove(socket.id);
+        if(list.length === 0) {
+            roomToGame.set(roomToGame, null);
+            roomToGame.remove(roomToGame);
+        }
+        socket.broadcast.to(roomName).emit(`${socket.id} has left the game`);
     });
 
     // Disconnect
@@ -29,8 +47,8 @@ exports.onConnect = (socket) => {
         console.info(`Socket ${socket.id} has guessed ${guess}.`);
         var msg = "incorrect";
         if (guess === 'TRUE') {
-            msg = "correct"
-            socket.boardcast.emit(`${socket.id} has correctly guess this round`)
+            msg = "correct";
+            socket.broadcast.to(roomName).emit(`${socket.id} has correctly guess this round`);
         } 
         socket.emit(msg);
     });
