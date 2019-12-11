@@ -13,13 +13,17 @@ const apiPort = 8080;
 const wss = new WebSocket.Server({ port: 3030 });
 
 wss.on('connection', function connection(ws) {
-  ws.on('message', function incoming(data) {
-    wss.clients.forEach(function each(client) {
-      if (client !== ws && client.readyState === WebSocket.OPEN) {
-        client.send(data);
-      }
+    /* Handles messages from the server
+    These will generally be chat or otherwise */
+    ws.on('message', function incoming(data) {
+        console.log('message');
+        wss.clients.forEach(function each(client) {
+            if (client !== ws && client.readyState === WebSocket.OPEN) {
+                console.log(data);
+                client.send(data);
+            }
+        });
     });
-  });
 });
 
 app.use(bodyParser.urlencoded({extended: true}))
@@ -31,7 +35,7 @@ app.use(express.json());
 let mongo_uri = 'mongodb://andrew:password@coms-319-090.cs.iastate.edu:27017/open_pictionary'
 
 mongoose.connect(mongo_uri,
-{useNewUrlParser: true, useUnifiedTopology: true}).catch( e => { console.error('Connection error', e.message)});
+    {useNewUrlParser: true, useUnifiedTopology: true}).catch( e => { console.error('Connection error', e.message)});
 
 var db = mongoose.connection;
 
