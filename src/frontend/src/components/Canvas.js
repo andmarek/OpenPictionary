@@ -15,6 +15,7 @@ class Canvas extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            color : this.props.color,
             drawnBuffer : [],
             drawing : false
         };
@@ -38,15 +39,15 @@ class Canvas extends React.Component {
             let coords = JSON.parse(evt.data);
 
             //console.log("coords we're receiving " , evt.data);
-            
             this.setState({ drawnBuffer : coords });
 
             //console.log(coords);
 
             //this.drawLine(this.ctx, 1, 1, 100, 100);
-            console.log(coords.x1, coords.x2, coords.y1, coords.y2);
+            console.log("coords", coords.x1, coords.x2, coords.y1, coords.y2);
 
-            this.drawLine(this.ctx, coords.x1, coords.x2, coords.y1, coords.y2);
+            this.drawLine(this.ctx, coords.x1, coords.y1, coords.x2, coords.y2);
+            //this.drawLine(this.ctx, coords.x1, coords.x2, coords.y1, coords.y2);
 
             this.setState({drawnBuffer : []});
             } 
@@ -91,12 +92,8 @@ class Canvas extends React.Component {
 
             let metaData = this.ctx.getImageData(0,0, 1000, 500).data;
             let data = this.ctx.getImageData(0,0, 1000, 500);
-
-            this.ws.send(JSON.stringify({
-                x1: this.x, y1: this.y, x2: e.clientX - this.rect.left, y2: e.clientY - this.rect.top
-            }));
             
-            // Probably going to remove 
+            // Might need this eventually 
             this.setState({drawnBuffer : metaData.buffer});
             this.ws.send(metaData.buffer);
             this.ctx.putImageData(data, 0, 0);
@@ -106,13 +103,19 @@ class Canvas extends React.Component {
             if (this.state.drawing === true) {
                 console.log('mouse moving');
                 this.drawLine(this.ctx, this.x, this.y, e.clientX - this.rect.left, e.clientY - this.rect.top);
+
+                this.ws.send(JSON.stringify({
+                    x1: this.x,
+                    y1: this.y,
+                    x2: e.clientX-this.rect.left,
+                    y2: e.clientY - this.rect.top
+                }));
+
                 this.x = e.clientX - this.rect.left;
                 this.y = e.clientY - this.rect.top;
 
                 //console.log("drawing");
-                this.ws.send(JSON.stringify({
-                    x1: this.x1, y1: this.y, x2: e.clientX-this.rect.left, y2: e.clientY - this.rect.top
-                }));
+                
             }
         }
     render() {
