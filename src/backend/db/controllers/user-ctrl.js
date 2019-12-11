@@ -1,5 +1,16 @@
 const User = require('../models/user-model')
+/*
+exports.logged_in = (req, res) => {
+    const body = req.body
+    if (!body) {
+        return res.status(400).json(
+            {
+                success: false,
+                error: 'Houston, we have a problem',
+            })
+    }
 
+}*/
 
 exports.createUser = (req, res) => {
     const body = req.body
@@ -62,7 +73,7 @@ exports.findOne = (req, res) => {
         }).catch(err => {
             if (err.kind === 'ObjectId') {
                 return res.status(404).send({
-                    
+
                         message: "User not found with id " + req.params.userId
                 });
             }

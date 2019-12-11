@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser')
 const path = require('path');
 const app = express();
+const WebSocket = require('ws');
 const cors = require('cors'); // Please don't remove this. It's a headache.  const WebSocket = require('ws');
 
 /* Sessions allow the user to login correctly */
@@ -44,7 +45,7 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     store: new MongoStore({ mongooseConnection: db})
-    }));
+}));
 
 app.use(express.json());
 
