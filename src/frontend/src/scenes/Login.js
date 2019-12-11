@@ -3,37 +3,16 @@ import styled from 'styled-components';
 import NavBar from '../components/NavBar';
 import axios from 'axios';
 
-
-const Styles1 = styled.div`
-    background: #94cbca;
-    display: flex;
-    width: 100%;
-    justify-content: center;
-
-    #header {
-        border-radius: 10px;
-        width: 100px;
-        height: 50px;
-        background-color: #D68266;
-        justify-content: center;
-     }
-
-     p {
-        margin: auto;
-        color: white;
-        font-family: 'Roboto', sans-serif;
-        justify-content: center;
-        display: flex;
-    }
-`;
-
-
 const Styles = styled.div `
 
-.container{ padding: 16px; }
+.container{ 
+    display: flex; 
+    padding: 16px; 
+    justify-content: center;
+  }
 
 input[type=text], input[type=password] {
-    width: 98%;
+    width: 70%;
     padding: 15px;
     margin: 5px 0 22px 0;
     display: inline-block;
@@ -56,12 +35,12 @@ input[type=text], input[type=password] {
     margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 100%;
+    width:100%;
     opacity: 0.9;
   }
 
   .submitbtn:hover {
-    opacity:1;
+    opacity: 1;
   }
 
   #loginTitle{
@@ -75,8 +54,14 @@ input[type=text], input[type=password] {
 class Login extends React.Component{
   constructor(props) {
     super(props);
-    this.state = {username : "", password : "", loginErrors: ""}
-  }
+    this.state = {
+      email : "", 
+      myPassword : "", 
+  };
+
+  this.onSubmit = this.onSubmit.bind(this);
+  this.onChange = this.onChange.bind(this);
+  };
 
   submitLogin = (e) => {
     const {
@@ -94,20 +79,44 @@ class Login extends React.Component{
       }, {
         withCredentials: true
       }).then(response => {
-        if (response.data.logged_in) {
-          this.props.handleSuccessfulAuth(response.data);
-        }
+        localStorage.setItem('userToken', response.data)
+        return response.data;
       })
       .catch(error => {
         console.log("login error: ", error)
       });
   }
 
-  handleChange(e)   {
-    this.setState({
-        [e.target.name]: e.target.value
-      });
+  onChange = (e) => {
+    this.setState({[e.target.name]: e.target.value})
+    console.log(e.target.name, "dogs");
   }
+/* Whatever */
+
+  onSubmit (e) {
+    e.preventDefault()  
+    const User = {
+      email: this.state.email,
+      password: this.state.password, 
+    }
+    /* Submit the request */
+    axios.post('localhost:8080/login', {
+      email: User.email,
+      password: User.password
+    }).then(res => {
+      localStorage.setItem('userToken');
+      return res.data;
+    }).catch(err => {
+      console.log(err);
+    }).then( res => {
+      if(res) {
+        this.props.history.push('/profile');
+      }
+    })
+
+  }
+  // on submit end 
+  
     render () {
         return (
           <div>
@@ -120,12 +129,12 @@ class Login extends React.Component{
                   </div>
                     <div className = "section">
                         <label htmlFor="email"><b>Email</b></label><br></br>
-                        <input type="text" placeholder="Enter Email" name="email" required></input>
+                        <input value={this.state.email} onChange={this.onChange} type="text" placeholder="EMAIL" name="email" required></input>
                         <br></br>
                         <label htmlFor="password"><b>Password</b></label><br></br>
-                        <input id="password" className="password" type="password" placeholder="Enter Password" required></input>
+                        <input name="myPassword" value={this.state.password} onChange={this.onChange}  id="password" className="password" type="password" placeholder="PASSWORD" required></input>
                     </div>
-                    <button id="submitbtn" onClick={this.submitLogin.bind(this)} className="submitbtn">Submit</button>
+                    <button id="submitbtn" onClick={this.onSubmit} className="submitbtn">Submit</button>
                   </form>
                 </div>
             </Styles>

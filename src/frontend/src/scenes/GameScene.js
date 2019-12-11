@@ -7,6 +7,10 @@ import Easel from '../components/Easel.js';
 import WordPicker from '../components/WordPicker.js'
 import Chat from '../components/Chat.js'
 
+let words = ["tree", "square", "cat", "dog", "house", "gazelle"];
+
+let randomWord = words[parseInt(Math.random()*words.length + 1)];
+
 
 const ContentStyle = styled.div`
     .wrapper {
@@ -64,15 +68,19 @@ class GameScene extends React.Component {
         super(props);
         this.state = {
             canvasDrawer : 'purple',
+            wordToDraw : randomWord,
         };
     };
-    
+    componentDidMount() {
+        console.log("random word game scene" + randomWord);
+    }    
     handleColor = (color, event) => {
         this.setState({ penColor : color.hex})
         console.log("changed color");
     }
 
     render() {
+
         return (
         <ContentStyle>
                 <div className="wrapper">
@@ -83,7 +91,7 @@ class GameScene extends React.Component {
                         <Chat id="chat" />
                     </div>
                     <div className="bottomScreen">
-                        <WordPicker id="wordPicker" />
+                        <WordPicker wordToDraw={randomWord} id="wordPicker" />
                     </div>
                 </div>
 

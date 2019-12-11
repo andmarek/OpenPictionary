@@ -1,11 +1,31 @@
 const express = require('express');
-
 const UserCtrl = require('../controllers/user-ctrl');
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 
 const userRouter = express.Router();
+/*
+userRouter.post('/register', (req, res) => {
+    const userData = {
+        username : req.body.username,
+        email: req.body.email,
+        password: req.body.password
+    }
+    User.findOne({
+        email: req.body.email    
+    })
+    .then(user => {
+        if(!user) {
+            bcrypt.hash(req.body.password, 10, (err, hash) => {
+                userData.password = User.create(userData)
+            })
+        }
+    })
+})
+*/
 
 userRouter.post('/login', (res, req) => {
-    User.findOne({
+    UserCtrl.findOne({
         email: req.body.email
     }).then(user => {
         if (user) {
@@ -35,7 +55,7 @@ userRouter.post('/login', (res, req) => {
 userRouter.get('/profile', (res, req) => {
     let decoded = jwt.verify(req.headers['authorization'], process. env.SECRET_KEY)
 
-    User.findOne({
+    UserCtrl.findOne({
         _id: decoded._id
     }).then( User => {
         if(User) {
